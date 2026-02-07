@@ -22,4 +22,9 @@ public class Issue {
     public String getStatus() {
         return status;
     }
+
+     @Override
+    public String toString() {
+        return key + " | " + status + " | " + summary;
+    }
 }
