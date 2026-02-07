@@ -47,6 +47,10 @@ public class CsvReader {
                 String summary = cols.length > 1 ? cols[1].trim() : "";
                 String status = cols.length > 2 ? cols[2].trim() : "";
 
+                if (key.isEmpty()) {
+                    continue;
+                }
+                
                 issues.add(new Issue(key, summary, status));
             }
         }
