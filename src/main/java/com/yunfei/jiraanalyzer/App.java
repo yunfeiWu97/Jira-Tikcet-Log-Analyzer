@@ -2,6 +2,7 @@ package com.yunfei.jiraanalyzer;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
@@ -24,11 +25,21 @@ public class App {
             if (!issues.isEmpty()) {
                 System.out.println("First issue: " + issues.get(0));
             }
+
+            IssueStats stats = new IssueStats();
+            Map<String, Integer> counts = stats.countByStatus(issues);
+
+            System.out.println("=== Status summary ===");
+            for (var entry : counts.entrySet()) {
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
+            System.out.println("Total: " + issues.size());
+
         } catch (IOException ex) {
             System.out.println("Could not read file: " + ex.getMessage());
         }
     }
-        
+
     private static String getArgValue(String[] args, String key) {
         if (args == null) {
             return null;
